@@ -1,0 +1,22 @@
+/* src/components/ProductGrid.module.css */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.noResults {
+  font-family: var(--font-body);
+  color: var(--color-neutral-medium-gray);
+  width: 100%;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

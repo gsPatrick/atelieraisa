@@ -1,0 +1,128 @@
+/* src/components/OurProcess.module.css (REVITALIZADO) */
+
+.section {
+  width: 100%;
+  padding: 6rem 4rem;
+  /* A alma começa aqui: um fundo sutil e acolhedor */
+  background-color: #fdfaf6; /* Um branco quente, cor de baunilha */
+  background-image: url('/images/process-background.jpg'); /* Se você tiver a imagem */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Um overlay para garantir a legibilidade do texto sobre a imagem de fundo */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}
+
+/* O conteúdo fica acima do overlay */
+.titleWrapper, .stepsContainer {
+  position: relative;
+  z-index: 2;
+}
+
+.titleWrapper {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--color-secondary-rose);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-neutral-medium-gray);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.stepsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid transparent;
+}
+
+.step:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(232, 180, 184, 0.2);
+  border-color: var(--color-secondary-gold);
+}
+
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #fff; /* Ícones brancos para contrastar com o fundo colorido */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Dando vida com cores da paleta! */
+.iconWrapper--1 { background-color: #F8D7DA; } /* Rosa Bebê */
+.iconWrapper--2 { background-color: #E8B4B8; } /* Ouro Rosé */
+.iconWrapper--3 { background-color: #F4E4BC; } /* Dourado Suave */
+.iconWrapper--4 { background-color: #d8c1c3; } /* Um tom de rosé mais fechado */
+
+.stepTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 0.75rem;
+}
+
+.stepDescription {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-neutral-medium-gray);
+  line-height: 1.6;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .stepsContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+  .stepsContainer {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

@@ -1,0 +1,28 @@
+/* app/catalogo/[slug]/page.module.css */
+
+.main {
+  padding: 4rem;
+}
+
+.productContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galleryWrapper {
+  /* A galeria pode precisar de um position relative para os thumbnails */
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+  .productContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

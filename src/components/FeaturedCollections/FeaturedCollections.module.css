@@ -1,0 +1,80 @@
+/* src/components/FeaturedCollections.module.css (CORRIGIDO) */
+
+.section {
+  width: 100%;
+  padding: 6rem 0;
+  background-color: var(--color-neutral-light-gray);
+  overflow: hidden;
+}
+
+.titleWrapper {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1.5rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--color-secondary-rose);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-neutral-medium-gray);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.carouselContainer {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* --- Estilização customizada do Swiper (SINTAXE CORRETA) --- */
+/* Agora, todos os seletores globais estão "ancorados" na nossa classe local .carouselContainer */
+
+.carouselContainer :global(.swiper-button-next),
+.carouselContainer :global(.swiper-button-prev) {
+  color: var(--color-secondary-rose);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.carouselContainer :global(.swiper-button-next:hover),
+.carouselContainer :global(.swiper-button-prev:hover) {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.carouselContainer :global(.swiper-pagination-bullet) {
+  background-color: var(--color-secondary-rose);
+  opacity: 0.5;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.carouselContainer :global(.swiper-pagination-bullet-active) {
+  background-color: var(--color-primary);
+  opacity: 1;
+}
+
+.carouselContainer :global(.swiper-slide) {
+  padding-bottom: 3rem; /* Espaço para a paginação */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+  .carouselContainer {
+    padding: 0 1rem;
+  }
+  .carouselContainer :global(.swiper-button-next),
+  .carouselContainer :global(.swiper-button-prev) {
+    display: none;
+  }
+}

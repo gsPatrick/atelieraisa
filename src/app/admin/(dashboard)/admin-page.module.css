@@ -1,0 +1,63 @@
+/* app/admin/(dashboard)/admin-page.module.css */
+.pageTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.metricCard {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.metricCard h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+.metricCard p {
+  font-size: 2rem;
+  font-weight: 600;
+}
+/* Estilos para tabelas e formulários que serão usados em outras páginas */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+.table th { font-family: var(--font-heading); }
+.actions a, .actions button { margin-right: 0.5rem; color: var(--color-secondary-rose); }
+.headerActions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.primaryButton { background-color: var(--color-secondary-rose); color: white; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; }
+.form { max-width: 600px; background: #fff; padding: 2rem; border-radius: 8px; }
+.form .inputGroup { margin-bottom: 1rem; }
+.form label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+.form input, .form select, .form textarea { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; }
+
+/* app/admin/(dashboard)/admin-page.module.css */
+/* ... estilos existentes ... */
+.divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 2.5rem 0;
+}
+
+.form { 
+  max-width: 800px; /* Aumenta a largura para acomodar melhor */
+  /* Remove o fundo e o padding, pois as seções internas agora cuidam disso */
+  /* background: #fff; */
+  /* padding: 2rem; */
+  /* border-radius: 8px; */
+}

@@ -1,0 +1,40 @@
+/* src/components/ProductGallery.module.css */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.mainImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--color-neutral-light-gray);
+}
+.mainImage {
+  object-fit: cover;
+}
+.thumbnailList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+.thumbnailWrapper {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.thumbnailWrapper:hover {
+  border-color: var(--color-primary);
+}
+.thumbnailWrapper.active {
+  border-color: var(--color-secondary-rose);
+}
+.thumbnailImage {
+  object-fit: cover;
+}

@@ -1,0 +1,19 @@
+/* app/admin/(dashboard)/admin.module.css */
+.loadingScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+}
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7f8fa;
+}
+.adminContent {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}

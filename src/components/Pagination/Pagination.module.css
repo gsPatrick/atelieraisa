@@ -1,0 +1,39 @@
+/* src/components/Pagination.module.css */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+
+.arrowButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-secondary-rose);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.arrowButton:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.arrowButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-family: var(--font-body);
+  color: var(--color-neutral-medium-gray);
+}

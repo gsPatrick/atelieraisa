@@ -1,0 +1,127 @@
+/* src/components/Hero/Hero.module.css */
+
+.heroSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(90vh - 80px); /* Levemente reduzido para caber melhor */
+  background-color: var(--color-neutral-white);
+  padding: 2rem 4rem;
+  overflow: hidden;
+}
+
+.heroContent {
+  flex: 1;
+  max-width: 600px; /* Um pouco mais de espaço para o texto */
+  padding-right: 4rem; /* Maior espaçamento da imagem */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: 4.5rem; /* AUMENTADO: 72px para mais impacto */
+  color: var(--color-secondary-rose);
+  line-height: 1.15; /* Levemente ajustado para o novo tamanho */
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.heroDescription {
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* AUMENTADO: 18px para melhor leitura */
+  color: var(--color-neutral-medium-gray);
+  line-height: 1.8; /* Mais espaçamento entre linhas */
+  margin-bottom: 3rem; /* Mais espaço antes do botão */
+  max-width: 95%;
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #715153;
+  font-family: var(--font-heading);
+  font-size: 1rem; /* AUMENTADO: 16px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 18px 40px; /* Botão maior */
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(248, 215, 218, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  background-color: #f7c5c9;
+  transform: translateY(-3px); /* Efeito de elevação um pouco maior */
+  box-shadow: 0 8px 25px rgba(244, 228, 188, 0.7);
+}
+
+.heroImageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: cover;
+  border-radius: 16px; /* Bordas um pouco mais arredondadas */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Media Queries para Responsividade --- */
+
+@media (max-width: 1024px) {
+  .heroSection {
+    flex-direction: column; /* Empilha os itens verticalmente */
+    text-align: center;
+    padding: 4rem 2rem;
+    min-height: auto;
+  }
+
+  .heroContent {
+    max-width: 100%;
+    padding-right: 0;
+    margin-bottom: 3rem;
+    align-items: center; /* Centraliza o botão */
+  }
+
+  .heroTitle {
+    font-size: 3.5rem; /* Reduz um pouco para telas menores */
+  }
+
+  .heroDescription {
+    max-width: 600px; /* Limita a largura do texto para não ficar muito largo */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroImageContainer {
+    width: 100%;
+    max-width: 500px; /* Limita o tamanho da imagem em telas de tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.8rem; /* Reduz ainda mais para celulares */
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+  }
+
+  .ctaButton {
+    padding: 16px 32px;
+    font-size: 0.9rem;
+  }
+}

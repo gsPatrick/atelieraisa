@@ -1,0 +1,72 @@
+/* src/components/CollectionCard.module.css */
+
+.card {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  height: 450px;
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease;
+}
+
+/* Efeito de hover delicado */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(232, 180, 184, 0.3); /* Sombra rosada */
+}
+
+.imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Efeito de zoom sutil na imagem no hover */
+.card:hover .image {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 24px 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  color: var(--color-neutral-white);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem; /* 28px */
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: 0.9rem; /* 14px */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-secondary-gold);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.card:hover .link {
+  opacity: 1;
+  transform: translateY(0);
+}

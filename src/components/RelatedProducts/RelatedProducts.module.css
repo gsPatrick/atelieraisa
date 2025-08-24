@@ -1,0 +1,39 @@
+/* src/components/RelatedProducts.module.css (COMPLETO E CORRIGIDO) */
+
+.section {
+  margin-top: 6rem;
+  padding: 4rem 0;
+  border-top: 1px solid var(--color-neutral-light-gray);
+  overflow: hidden;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  text-align: center;
+  color: var(--color-secondary-rose);
+  margin-bottom: 3rem;
+}
+
+/* MUDANÇA: Renomeado de .grid para .carouselContainer e ajustado */
+.carouselContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem; /* Espaço para as setas de navegação */
+}
+
+/* MUDANÇA: Adicionando estilos para os controles do Swiper */
+.carouselContainer :global(.swiper-button-next),
+.carouselContainer :global(.swiper-button-prev) {
+  color: var(--color-secondary-rose);
+  transition: color 0.3s ease;
+}
+
+.carouselContainer :global(.swiper-button-next:hover),
+.carouselContainer :global(.swiper-button-prev:hover) {
+  color: var(--color-primary);
+}
+
+.carouselContainer :global(.swiper-slide) {
+  height: auto; /* Garante que os cards se alinhem corretamente */
+}

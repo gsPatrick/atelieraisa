@@ -1,0 +1,179 @@
+/* src/components/ProductCard.module.css (REVISADO) */
+
+.cardWrapper {
+  height: 100%; /* Garante que o wrapper ocupe todo o espaço do grid/slide */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Faz o card preencher o wrapper, crucial para a altura igual */
+  text-decoration: none;
+  background-color: var(--color-neutral-white);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(232, 180, 184, 0.25);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.1; /* Proporção um pouco mais quadrada */
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  background-color: var(--color-secondary-gold);
+  color: #8c733b;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.favoriteButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  color: var(--color-neutral-medium-gray);
+  transition: all 0.3s ease;
+}
+
+.favoriteButton:hover {
+  background-color: var(--color-secondary-rose);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* --- Seção de Informações --- */
+.info {
+  padding: 1rem 1rem 0.5rem 1rem;
+  text-align: center;
+  flex-grow: 1; /* Esta é a mágica! Faz esta seção crescer para preencher o espaço */
+  display: flex;
+  flex-direction: column;
+}
+
+.category {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--color-neutral-medium-gray);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nameLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem; /* Levemente ajustado */
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-bottom: 0.5rem;
+  /* Garante que o nome não quebre o layout */
+  line-height: 1.4;
+  /* Altura mínima para 2 linhas, para alinhar cards com 1 linha de título */
+  min-height: 2.8em; 
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-secondary-rose);
+  margin-top: auto; /* Empurra o preço para baixo, alinhando-o */
+  padding-top: 0.5rem;
+}
+
+/* --- Seção de Ações --- */
+.actions {
+  display: flex;
+  padding: 0.5rem 1rem 1rem 1rem;
+  gap: 0.5rem;
+}
+
+.addToCartButton, .buyNowButton {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.addToCartButton {
+  background-color: #fff;
+  color: var(--color-secondary-rose);
+}
+
+.addToCartButton:hover {
+  background-color: #fef8f8; /* Rosa bem clarinho */
+}
+
+.buyNowButton {
+  background-color: var(--color-primary);
+  color: #715153;
+}
+
+.buyNowButton:hover {
+  background-color: #f7c5c9;
+  border-color: #f7c5c9;
+}
+
+/* src/components/ProductCard/ProductCard.module.css */
+
+/* ... estilos existentes ... */
+
+.favoriteButton.isFavorite {
+  background-color: var(--color-secondary-rose);
+  color: white;
+}

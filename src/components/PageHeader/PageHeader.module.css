@@ -1,0 +1,23 @@
+/* src/components/PageHeader.module.css */
+
+.header {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #fdfaf6; /* Fundo baunilha */
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--color-secondary-rose);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-neutral-medium-gray);
+  max-width: 500px;
+  margin: 0 auto;
+}

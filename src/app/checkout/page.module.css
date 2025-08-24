@@ -1,0 +1,321 @@
+/* app/checkout/page.module.css */
+
+.main {
+  background-color: var(--color-neutral-white);
+}
+
+.checkoutLayout {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  min-height: calc(100vh - 80px); /* Ajuste para não cobrir o footer */
+}
+
+/* --- Seção do Formulário (Esquerda) --- */
+
+.formSection {
+  padding: 4rem 6rem;
+  border-right: 1px solid var(--color-neutral-light-gray);
+  display: flex;
+  flex-direction: column;
+}
+
+.logoHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.logoHeader a {
+  text-decoration: none;
+}
+
+.logoPrimary {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--color-secondary-rose);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.logoSecondary {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  line-height: 1;
+  display: block;
+}
+
+.formBlock {
+  margin-bottom: 2.5rem;
+}
+
+.blockTitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-neutral-light-gray);
+}
+
+.inputGroup {
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--color-neutral-light-gray);
+  font-family: var(--font-body);
+}
+
+.inputRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.inputRow .inputGroup {
+  flex: 1;
+}
+
+/* --- Seção do Resumo (Direita) --- */
+
+.summarySection {
+  padding: 4rem;
+  background-color: #fdfcf9;
+}
+
+/* --- Componentes Específicos do Checkout --- */
+
+.guestHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: -1rem;
+}
+
+.guestHeader p {
+  font-size: 0.9rem;
+}
+
+.guestHeader a {
+  color: var(--color-secondary-rose);
+  font-weight: 600;
+}
+
+/* Cards de Endereço e Frete */
+.addressCard,
+.shippingOptionCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--color-neutral-light-gray);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addressCard:hover,
+.shippingOptionCard:hover {
+  border-color: var(--color-secondary-rose);
+  background-color: #fdfaf6;
+}
+
+.addressCard.selected,
+.shippingOptionCard.selected {
+  border-color: var(--color-secondary-rose);
+  border-width: 2px;
+  padding: calc(1rem - 1px); /* Compensa a borda mais grossa */
+  box-shadow: 0 0 0 3px rgba(248, 215, 218, 0.5);
+}
+
+.radioCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--color-neutral-light-gray);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.addressCard.selected .radioCircle,
+.shippingOptionCard.selected .radioCircle {
+  border-color: var(--color-secondary-rose);
+}
+
+.addressCard.selected .radioCircle::after,
+.shippingOptionCard.selected .radioCircle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-secondary-rose);
+}
+
+.addressCard p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-neutral-medium-gray);
+}
+
+.addressCard strong {
+  font-family: var(--font-heading);
+  color: var(--color-text-main);
+}
+
+.addNewButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-secondary-rose);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.shippingDetails {
+  flex-grow: 1;
+}
+
+.shippingDetails strong {
+  display: block;
+  font-family: var(--font-heading);
+}
+
+.shippingDetails span {
+  font-size: 0.9rem;
+  color: var(--color-neutral-medium-gray);
+}
+
+.shippingCost {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+/* Botão de Pagamento e Mensagens */
+.paymentButtonWrapper {
+  margin-top: 2rem;
+}
+
+.paymentButton {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-secondary-rose);
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paymentButton:hover {
+  background-color: #e0a3a7;
+}
+
+.paymentButton:disabled {
+  background-color: var(--color-neutral-medium-gray);
+  cursor: not-allowed;
+}
+
+.secureMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--color-neutral-medium-gray);
+}
+
+.errorText {
+  color: #d32f2f;
+  background-color: #ffebee;
+  border: 1px solid #ef9a9a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* --- NOVOS ESTILOS PARA O FORMULÁRIO DE NOVO ENDEREÇO --- */
+.newAddressContainer {
+    background-color: #fdfcf9;
+    padding: 1.5rem;
+    border: 1px solid var(--color-neutral-light-gray);
+    border-radius: 8px;
+}
+
+.newAddressActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.saveButton, .cancelButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saveButton {
+    background-color: var(--color-secondary-rose);
+    color: white;
+}
+.saveButton:disabled {
+    background-color: var(--color-neutral-medium-gray);
+}
+
+.cancelButton {
+    background-color: var(--color-neutral-light-gray);
+    color: var(--color-text-main);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .checkoutLayout {
+    grid-template-columns: 1fr;
+  }
+  .formSection {
+    padding: 2rem;
+    border-right: none;
+  }
+  .summarySection {
+    grid-row: 1; /* Coloca o resumo no topo em telas menores */
+    padding: 2rem;
+    border-bottom: 1px solid var(--color-neutral-light-gray);
+  }
+}
+
+@media (max-width: 768px) {
+    .formSection {
+        padding: 1.5rem;
+    }
+    .summarySection {
+        padding: 1.5rem;
+    }
+}

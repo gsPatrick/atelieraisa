@@ -1,0 +1,142 @@
+/* app/contato/page.module.css (REVISADO) */
+
+.main {
+  padding: 4rem;
+  background-color: #fdfaf6; /* Fundo baunilha para toda a página */
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background-color: var(--color-neutral-white);
+  border-radius: 12px;
+  border: 1px solid var(--color-neutral-light-gray);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--card-color, var(--color-primary));
+  transition: height 0.4s ease;
+}
+
+.contactCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(232, 180, 184, 0.2);
+}
+
+.contactCard:hover::before {
+  height: 100%;
+}
+
+.iconWrapper, .cardTitle, .cardDescription, .cardAction {
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s ease;
+}
+
+.iconWrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  background-color: var(--card-color, var(--color-primary));
+  color: #fff;
+}
+
+.contactCard:hover .iconWrapper {
+  background-color: #fff;
+  color: var(--card-color, var(--color-primary));
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.cardDescription {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-neutral-medium-gray);
+  line-height: 1.6;
+  flex-grow: 1; /* Garante que os cards tenham a mesma altura */
+  margin-bottom: 1.5rem;
+}
+
+.contactCard:hover .cardTitle,
+.contactCard:hover .cardDescription {
+  color: #fff;
+}
+
+.cardAction {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-main);
+}
+
+.contactCard:hover .cardAction {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--card-color, var(--color-primary));
+}
+
+/* --- Seção de FAQ --- */
+.faqSection {
+  max-width: 800px;
+  margin: 6rem auto 0 auto;
+  text-align: center;
+}
+
+.faqTitle {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--color-secondary-rose);
+  margin-bottom: 2rem;
+}
+
+.accordionContainer {
+  text-align: left;
+  background-color: var(--color-neutral-white);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 900px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+}

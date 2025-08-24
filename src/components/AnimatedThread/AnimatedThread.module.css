@@ -1,0 +1,18 @@
+/* src/components/AnimatedThread.module.css */
+.threadSvg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* Permite clicar através do SVG */
+}
+
+@media (max-width: 768px) {
+  .threadSvg {
+    left: 20px; /* Em telas menores, o fio fica na lateral */
+    transform: none;
+  }
+}

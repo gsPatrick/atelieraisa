@@ -1,0 +1,43 @@
+/* app/catalogo/page.module.css (CÓDIGO CORRETO) */
+
+.main {
+  padding: 4rem;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-start; 
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
+.loadingText {
+  font-family: var(--font-body);
+  color: var(--color-neutral-medium-gray);
+  width: 100%;
+  text-align: center;
+  padding: 4rem 0;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .container > :first-child {
+    width: 100%;
+    position: static; /* Desativa o sticky em mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+}
