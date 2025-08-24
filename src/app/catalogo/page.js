@@ -1,9 +1,9 @@
-// app/produtos/page.js (INTEGRADO COM API)
+// app/produtos/page.js (INTEGRADO COM API - CORRIGIDO)
 
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation'; // Hook para ler parâmetros da URL
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import apiClient from '../../services/api';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import FilterSidebar from '../../components/FilterSidebar/FilterSidebar';
@@ -13,8 +13,9 @@ import styles from './page.module.css';
 
 const PRODUCTS_PER_PAGE = 9;
 
-export default function CatalogPage() {
-  const searchParams = useSearchParams(); // Para ler a categoria da URL
+// Componente separado que usa useSearchParams
+function CatalogContent() {
+  const searchParams = useSearchParams();
   
   // Estados para os dados da API
   const [products, setProducts] = useState([]);
@@ -91,7 +92,7 @@ export default function CatalogPage() {
       <main className={styles.main}>
         <div className={styles.container}>
           <FilterSidebar 
-            categories={categories.map(c => ({ value: c.slug, label: c.nome }))} // Passa as categorias no formato esperado
+            categories={categories.map(c => ({ value: c.slug, label: c.nome }))}
             activeCategory={activeCategory}
             onCategoryChange={handleCategoryChange}
             sortOrder={sortOrder}
@@ -115,5 +116,31 @@ export default function CatalogPage() {
         </div>
       </main>
     </>
+  );
+}
+
+// Componente Loading para o Suspense
+function CatalogLoading() {
+  return (
+    <>
+      <PageHeader 
+        title="Nosso Catálogo"
+        subtitle="Descubra peças feitas à mão, criadas com carinho para encantar seu dia a dia."
+      />
+      <main className={styles.main}>
+        <div className={styles.container}>
+          <div className={styles.loadingText}>Carregando catálogo...</div>
+        </div>
+      </main>
+    </>
+  );
+}
+
+// Componente principal que envolve tudo no Suspense
+export default function CatalogPage() {
+  return (
+    <Suspense fallback={<CatalogLoading />}>
+      <CatalogContent />
+    </Suspense>
   );
 }
