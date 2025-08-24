@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
-import apiClient from '@/api';
+import apiClient from '../../../services/api';
 import styles from '../payment-status.module.css';
 
 export default function PaymentSuccessPage() {
