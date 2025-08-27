@@ -11,12 +11,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'n8n-doodledreamsbackend.r954jc.easypanel.host',
-        pathname: '/uploads/imagens/**',
+        pathname: '/**', // Permite qualquer caminho dentro desse domínio
       },
       {
         protocol: 'https',
         hostname: 'geral-ateliatania-api.r954jc.easypanel.host',
-        pathname: '/uploads/imagens/**',
+        pathname: '/**', // Permite qualquer caminho dentro desse domínio
       },
     ],
   },
