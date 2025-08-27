@@ -1,12 +1,11 @@
-// src/components/ProductCard/ProductCard.js
+// src/components/ProductCard/ProductCard.js (CORRIGIDO PARA LIDAR COM VARIAÇÕES)
 
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Heart, ArrowRight } from 'lucide-react';
+import { Heart, ArrowRight } from 'lucide-react'; // ShoppingBag não é mais necessário aqui
 import { useCart } from '../../context/CartContext';
 import styles from './ProductCard.module.css';
 
@@ -20,18 +19,25 @@ const cardVariants = {
 };
 
 export default function ProductCard({ product }) {
-  const { addToCart, buyNow, addFavorite, removeFavorite, isFavorite } = useCart();
-  const router = useRouter();
+  const { addFavorite, removeFavorite, isFavorite } = useCart();
   
   const { id, nome, categoria, variacoes, imagens, slug, isExclusive } = product;
 
-  // --- MUDANÇA 1: Acessar a variação padrão e seu preço ---
-  // Pega a primeira variação. Se não existir, cria um objeto fallback para evitar erros.
-  const defaultVariation = variacoes?.[0] || { id: null, nome: '', preco: '0.00' };
-  const displayPrice = parseFloat(defaultVariation.preco).toFixed(2).replace('.', ',');
+  // --- MUDANÇA 1: Lógica de preço aprimorada para variações ---
+  let displayPrice = 'Consulte';
+  if (variacoes && variacoes.length > 0) {
+    if (variacoes.length === 1) {
+      // Se só tem uma variação, mostra o preço dela
+      displayPrice = `R$ ${parseFloat(variacoes[0].preco).toFixed(2).replace('.', ',')}`;
+    } else {
+      // Se tem várias, encontra o menor preço
+      const prices = variacoes.map(v => parseFloat(v.preco));
+      const minPrice = Math.min(...prices);
+      displayPrice = `A partir de R$ ${minPrice.toFixed(2).replace('.', ',')}`;
+    }
+  }
 
   const displayImage = imagens?.[0] || '/images/placeholder.jpg';
-  
   const isProdFavorite = isFavorite(id);
 
   const handleFavoriteClick = (e) => {
@@ -41,33 +47,6 @@ export default function ProductCard({ product }) {
     } else {
       addFavorite(id);
     }
-  };
-
-  const handleAction = (action) => {
-    // --- MUDANÇA 2: Criar o payload do produto para o carrinho ---
-    // A lógica é a mesma para 'addToCart' e 'buyNow'.
-    // Usamos a 'defaultVariation' que já pegamos acima.
-    const productForCart = {
-      ...product, // Espalha as propriedades do produto (slug, etc.)
-      id: product.id,
-      variacaoId: defaultVariation.id,
-      name: nome, // Como só tem uma variação, usamos apenas o nome principal do produto.
-      price: parseFloat(defaultVariation.preco),
-      images: imagens,
-    };
-    
-    action(productForCart, 1);
-  };
-
-  const handleBuyNowClick = async (e) => {
-    e.preventDefault();
-    await handleAction(buyNow);
-    router.push('/checkout');
-  };
-
-  const handleAddToCartClick = (e) => {
-    e.preventDefault();
-    handleAction(addToCart);
   };
 
   return (
@@ -98,19 +77,15 @@ export default function ProductCard({ product }) {
           <Link href={`/catalogo/${slug}`} className={styles.nameLink}>
             <h3 className={styles.name}>{nome}</h3>
           </Link>
-          {/* --- MUDANÇA 3: Exibir o preço da variação --- */}
-          <p className={styles.price}>R$ {displayPrice}</p>
+          <p className={styles.price}>{displayPrice}</p>
         </div>
 
+        {/* --- MUDANÇA 2: Substituir os botões de ação por um único link --- */}
         <div className={styles.actions}>
-          <button className={styles.addToCartButton} onClick={handleAddToCartClick}>
-            <ShoppingBag size={16} />
-            <span>Adicionar</span>
-          </button>
-          <button className={styles.buyNowButton} onClick={handleBuyNowClick}>
-            <span>Comprar Agora</span>
+          <Link href={`/catalogo/${slug}`} className={styles.detailsButton}>
+            <span>Ver Detalhes</span>
             <ArrowRight size={16} />
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>

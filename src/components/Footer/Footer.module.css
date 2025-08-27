@@ -1,71 +1,58 @@
-/* src/components/Footer.module.css */
+/* src/components/Footer.module.css (COM NOVO ESTILO PARA O LINK DE DESENVOLVEDOR) */
 
 .footer {
   width: 100%;
   background-color: var(--color-neutral-white);
 }
 
-/* --- Seção da Newsletter --- */
-.newsletterSection {
-  background-color: #fefcf5; /* Dourado bem clarinho */
+.whatsappSection {
+  background-color: #fdfaf6;
   padding: 4rem 2rem;
   text-align: center;
 }
 
-.newsletterContent {
+.whatsappContent {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.newsletterTitle {
+.whatsappTitle {
   font-family: var(--font-display);
   font-size: 2.8rem;
   color: var(--color-secondary-rose);
   margin-bottom: 0.5rem;
 }
 
-.newsletterSubtitle {
+.whatsappSubtitle {
   font-family: var(--font-body);
   color: var(--color-neutral-medium-gray);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.newsletterForm {
-  display: flex;
-  max-width: 450px;
-  margin: 0 auto;
-  border: 1px solid var(--color-secondary-gold);
+.whatsappButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: #25D366;
+  color: white;
+  padding: 14px 32px;
+  border: none;
   border-radius: 50px;
-  overflow: hidden;
-}
-
-.newsletterInput {
-  flex-grow: 1;
-  border: none;
-  padding: 14px 20px;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  background-color: transparent;
-}
-.newsletterInput:focus {
-  outline: none;
-}
-
-.newsletterButton {
-  border: none;
-  background-color: var(--color-primary);
-  color: #715153;
-  padding: 0 28px;
   font-family: var(--font-heading);
   font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.newsletterButton:hover {
-  background-color: #f7c5c9;
+  transition: all 0.3s ease;
 }
 
-/* --- Rodapé Principal --- */
+.whatsappButton:hover {
+  background-color: #128C7E;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
 .mainFooter {
   padding: 4rem 4rem 2rem 4rem;
   border-bottom: 1px solid var(--color-neutral-light-gray);
@@ -73,7 +60,7 @@
 
 .footerGrid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -113,6 +100,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  padding: 0;
 }
 .linkList a {
   font-family: var(--font-body);
@@ -136,7 +124,6 @@
   transform: scale(1.1);
 }
 
-/* --- Barra Inferior --- */
 .bottomBar {
   display: flex;
   justify-content: space-between;
@@ -146,6 +133,19 @@
   font-size: 0.8rem;
   color: var(--color-neutral-medium-gray);
 }
+
+/* --- MUDANÇA: Novo estilo para o link de crédito --- */
+.devLink {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.devLink:hover {
+  color: var(--color-secondary-rose);
+}
+
 
 /* Responsividade */
 @media (max-width: 900px) {
@@ -158,6 +158,11 @@
   .footerGrid {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+  .logoColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .logoTagline, .linkList {
     margin: 1rem auto;

@@ -1,5 +1,5 @@
 /* src/components/ProductInfo.module.css */
-/* (Estilos para categoria, nome, preço, botões e acordeão) */
+/* (Estilos existentes no início do arquivo) */
 .category {
   font-family: var(--font-body);
   text-transform: uppercase;
@@ -24,6 +24,7 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  margin-top: 2rem; /* Adicionado espaço acima das ações */
 }
 .quantitySelector {
   display: flex;
@@ -53,8 +54,9 @@
   margin-top: 2rem;
 }
 
+/* --- MUDANÇA: ESTILOS DE VARIAÇÃO REFEITOS --- */
 .variations {
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .variationLabel {
@@ -65,35 +67,87 @@
   display: block;
 }
 
-.variationOptions {
+.variationList {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.75rem;
 }
 
-.variationButton {
-  padding: 10px 18px;
+.variationCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
   border: 1px solid var(--color-neutral-light-gray);
-  border-radius: 30px;
-  background-color: var(--color-neutral-white);
+  border-radius: 8px;
   cursor: pointer;
-  font-family: var(--font-body);
   transition: all 0.3s ease;
 }
 
-.variationButton:hover {
-  border-color: var(--color-secondary-rose);
-  color: var(--color-secondary-rose);
+.variationCard:hover {
+  border-color: var(--color-primary);
+  background-color: #fdfaf6;
 }
 
-.variationButton.active {
+.variationCard.selected {
+  border-color: var(--color-secondary-rose);
+  background-color: #fef8f8;
+  box-shadow: 0 0 0 2px var(--color-secondary-rose);
+}
+
+.radioCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--color-neutral-light-gray);
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.selected .radioCircle {
+  border-color: var(--color-secondary-rose);
+}
+
+.radioCircle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   background-color: var(--color-secondary-rose);
-  border-color: var(--color-secondary-rose);
-  color: white;
-  font-weight: 600;
+  transition: transform 0.3s ease;
 }
 
-/* Desabilitar botões de ação se nenhuma variação for selecionada */
+.selected .radioCircle::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.variationDetails {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.variationName {
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+.variationStock {
+  font-size: 0.8rem;
+  color: var(--color-neutral-medium-gray);
+}
+
+.variationPrice {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
 .addToCartButton:disabled,
 .buyNowButton:disabled {
     background-color: var(--color-neutral-light-gray);

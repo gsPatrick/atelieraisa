@@ -1,4 +1,4 @@
-// app/produtos/page.js (INTEGRADO COM API - CORRIGIDO)
+// app/produtos/page.js (REATORADO PARA FILTRO NO FRONT-END)
 
 'use client';
 
@@ -17,70 +17,95 @@ const PRODUCTS_PER_PAGE = 9;
 function CatalogContent() {
   const searchParams = useSearchParams();
   
-  // Estados para os dados da API
-  const [products, setProducts] = useState([]);
+  // --- MUDANÇA 1: Novos estados para gerenciar os produtos ---
+  const [allProducts, setAllProducts] = useState([]); // Guarda TODOS os produtos da API
+  const [filteredProducts, setFilteredProducts] = useState([]); // Guarda os produtos após filtro e ordenação
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Estados para controle da paginação e filtros
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  // Lê o parâmetro 'categoria' da URL para o estado inicial
   const [activeCategory, setActiveCategory] = useState(searchParams.get('categoria') || 'all');
   const [sortOrder, setSortOrder] = useState('default');
 
-  // Efeito para buscar as categorias uma única vez quando o componente monta
+  // --- MUDANÇA 2: Efeito para buscar TODOS os dados (produtos e categorias) uma única vez ---
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await apiClient.get('/categorias');
-        // Adiciona a opção "Todas" manualmente para o filtro
-        setCategories([{ id: 'all', slug: 'all', nome: 'Todas' }, ...response.data]);
-      } catch (error) {
-        console.error("Erro ao buscar categorias:", error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
-  // Efeito principal para buscar os produtos sempre que os filtros ou a página mudam
-  useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
-        // Constrói os parâmetros da query para a API
-        const params = new URLSearchParams({
-          page: currentPage,
-          limit: PRODUCTS_PER_PAGE,
-          ordenarPor: sortOrder,
-        });
+        // Busca as categorias primeiro para usar no filtro
+        const categoriesResponse = await apiClient.get('/categorias');
+        const activeCategories = [{ id: 'all', slug: 'all', nome: 'Todas' }, ...categoriesResponse.data];
+        setCategories(activeCategories);
 
-        if (activeCategory !== 'all') {
-          params.append('categorias', activeCategory);
-        }
-
-        const response = await apiClient.get(`/produtos?${params.toString()}`);
+        // Busca TODOS os produtos (removendo paginação e filtros da chamada inicial)
+        const productsResponse = await apiClient.get('/produtos?limit=999'); // Limite alto para pegar todos
+        setAllProducts(productsResponse.data.produtos);
         
-        setProducts(response.data.produtos);
-        setTotalPages(response.data.totalPages);
       } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
+        console.error("Erro ao buscar dados iniciais:", error);
       } finally {
         setIsLoading(false);
       }
     };
+    fetchData();
+  }, []);
 
-    fetchProducts();
-  }, [currentPage, activeCategory, sortOrder]);
+  // --- MUDANÇA 3: Efeito principal para FILTRAR e ORDENAR os produtos no front-end ---
+  // Este efeito roda sempre que os filtros, a ordenação ou a lista principal de produtos mudam.
+  useEffect(() => {
+    let productsToProcess = [...allProducts];
 
-  // Funções para atualizar os filtros e resetar a página
+    // 1. Filtrar por Categoria
+    if (activeCategory !== 'all') {
+      // Encontra o ID da categoria com base no slug ativo
+      const categoryObject = categories.find(c => c.slug === activeCategory);
+      if (categoryObject) {
+        productsToProcess = productsToProcess.filter(p => p.categoriaId === categoryObject.id);
+      }
+    }
+
+    // 2. Ordenar
+    switch (sortOrder) {
+      case 'price-asc':
+        productsToProcess.sort((a, b) => parseFloat(a.variacoes[0]?.preco || 0) - parseFloat(b.variacoes[0]?.preco || 0));
+        break;
+      case 'price-desc':
+        productsToProcess.sort((a, b) => parseFloat(b.variacoes[0]?.preco || 0) - parseFloat(a.variacoes[0]?.preco || 0));
+        break;
+      case 'newest':
+        productsToProcess.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      default:
+        // Mantém a ordem padrão (geralmente por data de criação, vindo da API)
+        break;
+    }
+
+    setFilteredProducts(productsToProcess);
+    setCurrentPage(1); // Sempre reseta para a primeira página ao aplicar um novo filtro
+
+  }, [activeCategory, sortOrder, allProducts, categories]);
+
+
+  // --- MUDANÇA 4: Lógica de paginação agora é no front-end ---
+  useEffect(() => {
+    setTotalPages(Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE));
+  }, [filteredProducts]);
+
+  // Calcula quais produtos mostrar na página atual
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
+  const currentProducts = filteredProducts.slice(startIndex, endIndex);
+
+  // Funções para atualizar os filtros
   const handleCategoryChange = (categorySlug) => {
     setActiveCategory(categorySlug);
-    setCurrentPage(1); // Reseta para a primeira página ao mudar o filtro
   };
 
   const handleSortChange = (sortValue) => {
     setSortOrder(sortValue);
-    setCurrentPage(1); // Reseta para a primeira página ao mudar a ordenação
   };
 
   return (
@@ -102,7 +127,8 @@ function CatalogContent() {
             {isLoading ? (
               <p className={styles.loadingText}>Buscando as peças mais lindas...</p>
             ) : (
-              <ProductGrid products={products} />
+              // --- MUDANÇA 5: Passa os produtos da página atual para o grid ---
+              <ProductGrid products={currentProducts} />
             )}
             
             {totalPages > 1 && !isLoading && (

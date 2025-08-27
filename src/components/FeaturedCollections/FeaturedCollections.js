@@ -1,4 +1,4 @@
-// src/components/FeaturedCollections/FeaturedCollections.js (VERSÃO COMPLETA E FINAL)
+// src/components/FeaturedCollections/FeaturedCollections.js (LINK CORRIGIDO)
 
 'use client';
 
@@ -30,22 +30,19 @@ export default function FeaturedCollections() {
     const fetchCollections = async () => {
       try {
         setIsLoading(true);
-        // Busca apenas as categorias que estão marcadas como ativas
         const response = await apiClient.get('/categorias?ativo=true');
         
-        // Mapeia os dados da API para o formato que o componente CollectionCard espera
         const formattedCollections = response.data.map((cat, index) => ({
           id: cat.id,
           title: cat.nome,
-          // Usa a imagem da API (cat.imagemUrl), se existir. Caso contrário, usa uma imagem de fallback.
           image: cat.imagemUrl || fallbackImages[index % fallbackImages.length],
-          // O link aponta para a página de catálogo, já com o filtro da categoria aplicado via query param
-          href: `/produtos?categoria=${cat.slug}`,
+          // --- MUDANÇA EXECUTADA AQUI ---
+          // O link agora aponta para a rota correta: /catalogo
+          href: `/catalogo?categoria=${cat.slug}`,
         }));
         setCollections(formattedCollections);
       } catch (error) {
         console.error("Erro ao buscar coleções (categorias):", error);
-        // Em caso de erro, o array de coleções permanecerá vazio
       } finally {
         setIsLoading(false);
       }
@@ -54,7 +51,6 @@ export default function FeaturedCollections() {
     fetchCollections();
   }, []);
 
-  // Se estiver carregando, podemos mostrar um placeholder (opcional)
   if (isLoading) {
     return (
       <section className={styles.section}>
@@ -66,7 +62,6 @@ export default function FeaturedCollections() {
     );
   }
   
-  // Se não houver coleções após o carregamento, exibe uma mensagem amigável
   if (collections.length === 0) {
     return (
       <section className={styles.section}>
@@ -100,7 +95,7 @@ export default function FeaturedCollections() {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
-          loop={collections.length > 3} // Ativa o loop apenas se houver itens suficientes para valer a pena
+          loop={collections.length > 3}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
@@ -108,12 +103,10 @@ export default function FeaturedCollections() {
           pagination={{ clickable: true }}
           navigation={true}
           breakpoints={{
-            // quando a largura da janela for >= 768px
             768: {
               slidesPerView: 2,
               spaceBetween: 20,
             },
-            // quando a largura da janela for >= 1024px
             1024: {
               slidesPerView: 3,
               spaceBetween: 30,

@@ -1,27 +1,27 @@
-// src/components/Footer.js (CORRIGIDO)
+// src/components/Footer.js (CRÉDITOS ATUALIZADOS)
 
 import Link from 'next/link';
-import { Mail, Instagram, Facebook } from 'lucide-react'; // A correção está aqui
+import { Instagram, Facebook, MessageCircle } from 'lucide-react'; 
 import styles from './Footer.module.css';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.newsletterSection}>
-        <div className={styles.newsletterContent}>
-          <h3 className={styles.newsletterTitle}>Receba nossas Novidades</h3>
-          <p className={styles.newsletterSubtitle}>
-            Cadastre-se para receber inspirações, lançamentos e descontos especiais diretamente no seu e-mail.
+      <div className={styles.whatsappSection}>
+        <div className={styles.whatsappContent}>
+          <h3 className={styles.whatsappTitle}>Atendimento Personalizado</h3>
+          <p className={styles.whatsappSubtitle}>
+            Ficou com alguma dúvida? Chame a gente no WhatsApp! Será um prazer ajudar com seus pedidos, dúvidas e projetos especiais.
           </p>
-          <form className={styles.newsletterForm}>
-            <input 
-              type="email" 
-              placeholder="Seu melhor e-mail" 
-              className={styles.newsletterInput} 
-              required 
-            />
-            <button type="submit" className={styles.newsletterButton}>Cadastrar</button>
-          </form>
+          <a 
+            href="https://wa.me/5511999999999" // Lembre-se de colocar o número correto aqui
+            className={styles.whatsappButton}
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={20} />
+            <span>Conversar no WhatsApp</span>
+          </a>
         </div>
       </div>
 
@@ -38,20 +38,9 @@ export default function Footer() {
           <div className={styles.linksColumn}>
             <h4 className={styles.columnTitle}>Navegue</h4>
             <ul className={styles.linkList}>
-              <li><Link href="/colecoes">Coleções</Link></li>
-              <li><Link href="/produtos">Todos os Produtos</Link></li>
+              <li><Link href="/">Início</Link></li>
+              <li><Link href="/catalogo">Catálogo</Link></li>
               <li><Link href="/sobre">Sobre Nós</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
-            </ul>
-          </div>
-
-          <div className={styles.linksColumn}>
-            <h4 className={styles.columnTitle}>Ajuda</h4>
-            <ul className={styles.linkList}>
-              <li><Link href="/faq">Dúvidas Frequentes</Link></li>
-              <li><Link href="/contato">Contato</Link></li>
-              <li><Link href="/politica-de-privacidade">Política de Privacidade</Link></li>
-              <li><Link href="/termos-de-uso">Termos de Uso</Link></li>
             </ul>
           </div>
 
@@ -65,9 +54,20 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* --- MUDANÇA EXECUTADA AQUI --- */}
       <div className={styles.bottomBar}>
         <p>&copy; {new Date().getFullYear()} Ateliê Raisa. Todos os direitos reservados.</p>
-        <p>Desenvolvido com ♡</p>
+        <p>
+          Desenvolvido por{' '}
+          <a 
+            href="https://codebypatrick.dev/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.devLink}
+          >
+            Patrick.Developer
+          </a>
+        </p>
       </div>
     </footer>
   );

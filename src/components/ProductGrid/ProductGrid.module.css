@@ -1,4 +1,4 @@
-/* src/components/ProductGrid.module.css */
+/* src/components/ProductGrid.module.css (MODIFICADO COM RESPONSIVIDADE MOBILE) */
 
 .grid {
   display: grid;
@@ -18,5 +18,13 @@
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- MUDANÇA: ADICIONANDO MEDIA QUERY PARA MOBILE --- */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* Força a grade a ter apenas uma coluna */
+    gap: 1.5rem; /* Opcional: Reduz o espaçamento para telas menores */
   }
 }
