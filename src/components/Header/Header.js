@@ -101,7 +101,7 @@ export default function Header() {
               <nav>
                 <ul className={styles.mobileNavList}>
                   <li><Link href="/" onClick={toggleMenu} className={styles.mobileNavLink}>Início</Link></li>
-                  <li><Link href="/produtos" onClick={toggleMenu} className={styles.mobileNavLink}>Catálogo</Link></li>
+                  <li><Link href="/catalogo" onClick={toggleMenu} className={styles.mobileNavLink}>Catálogo</Link></li>
                   <li><Link href="/sobre" onClick={toggleMenu} className={styles.mobileNavLink}>Sobre</Link></li>
                   <li><Link href="/contato" onClick={toggleMenu} className={styles.mobileNavLink}>Contato</Link></li>
                 </ul>

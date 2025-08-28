@@ -37,7 +37,7 @@ export default function WishlistDrawer() {
             {favoriteProducts.length === 0 ? (
               <div className={styles.empty}>
                 <p>Sua lista de favoritos está vazia.</p>
-                <Link href="/produtos" onClick={toggleWishlist} className={styles.continueShopping}>
+                <Link href="/catalogo" onClick={toggleWishlist} className={styles.continueShopping}>
                   Encontrar peças
                 </Link>
               </div>
