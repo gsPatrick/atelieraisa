@@ -31,7 +31,7 @@ export default function ContactPage() {
       <main className={styles.main}>
         <div className={styles.contactGrid}>
           {/* Card de WhatsApp */}
-          <Link href="https://wa.me/5511987654321" target="_blank" className={styles.contactCard}>
+          <Link href="https://www.instagram.com/raisaatelie?igsh=NHBueTAycWM3bml4" target="_blank" className={styles.contactCard}>
             <div className={styles.iconWrapper} style={{'--card-color': '#F8D7DA'}}>
               <MessageSquare size={32} />
             </div>
@@ -43,7 +43,7 @@ export default function ContactPage() {
           </Link>
 
           {/* Card de Instagram */}
-          <Link href="https://instagram.com/atelie_raisa" target="_blank" className={styles.contactCard}>
+          <Link href="https://www.instagram.com/raisaatelie?igsh=NHBueTAycWM3bml4" target="_blank" className={styles.contactCard}>
             <div className={styles.iconWrapper} style={{'--card-color': '#E8B4B8'}}>
               <Instagram size={32} />
             </div>

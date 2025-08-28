@@ -14,7 +14,7 @@ export default function Footer() {
             Ficou com alguma dúvida? Chame a gente no WhatsApp! Será um prazer ajudar com seus pedidos, dúvidas e projetos especiais.
           </p>
           <a 
-            href="https://wa.me/5511999999999" // Lembre-se de colocar o número correto aqui
+            href="https://wa.me/5518981109568?text=Ol%C3%A1%2C%20tudo%20bem%3F" // Lembre-se de colocar o número correto aqui
             className={styles.whatsappButton}
             target="_blank" 
             rel="noopener noreferrer"
@@ -47,8 +47,7 @@ export default function Footer() {
           <div className={styles.socialColumn}>
             <h4 className={styles.columnTitle}>Siga-nos</h4>
             <div className={styles.socialIcons}>
-              <a href="#" aria-label="Instagram" className={styles.socialLink}><Instagram size={20} /></a>
-              <a href="#" aria-label="Facebook" className={styles.socialLink}><Facebook size={20} /></a>
+              <a href="https://www.instagram.com/raisaatelie?igsh=NHBueTAycWM3bml4" aria-label="Instagram" className={styles.socialLink}><Instagram size={20} /></a>
             </div>
           </div>
         </div>
