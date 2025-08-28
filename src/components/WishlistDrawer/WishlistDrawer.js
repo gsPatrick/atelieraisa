@@ -1,13 +1,11 @@
+// src/components/WishlistDrawer.js (REDESENHADO SEM IMAGENS)
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/context/CartContext';
 import { X, Trash2, Eye } from 'lucide-react';
 import styles from './WishlistDrawer.module.css';
-
-const PLACEHOLDER_IMAGE = '/images/placeholder.jpg'; // Imagem padrão
 
 export default function WishlistDrawer() {
   const { isWishlistOpen, toggleWishlist, favoriteProducts, removeFavorite } = useCart();
@@ -45,19 +43,13 @@ export default function WishlistDrawer() {
               <>
                 <div className={styles.itemList}>
                   {favoriteProducts.map(item => {
-                    // --- MUDANÇA 1: Acesso seguro à imagem e ao preço ---
-                    const displayImage = item.imagens?.[0] || PLACEHOLDER_IMAGE;
                     const displayPrice = item.variacoes?.[0]?.preco || '0.00';
 
+                    // --- MUDANÇA 1: A estrutura do item foi completamente simplificada ---
                     return (
                       <div key={item.id} className={styles.item}>
-                        <div className={styles.itemImage}>
-                          {/* Usa a imagem segura */}
-                          <Image src={displayImage} alt={item.nome} fill sizes="100px" style={{ objectFit: 'cover' }} />
-                        </div>
                         <div className={styles.itemDetails}>
                           <p className={styles.itemName}>{item.nome}</p>
-                          {/* Usa o preço seguro */}
                           <p className={styles.itemPrice}>R$ {parseFloat(displayPrice).toFixed(2).replace('.', ',')}</p>
                           <Link href={`/catalogo/${item.slug}`} onClick={toggleWishlist} className={styles.viewProductButton}>
                             <Eye size={14} /> Ver Produto

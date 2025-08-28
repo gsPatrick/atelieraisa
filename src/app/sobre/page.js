@@ -1,4 +1,4 @@
-// app/sobre/page.js
+// app/sobre/page.js (COM WRAPPER PARA O COMPONENTE DE ANIMAÇÃO)
 'use client';
 
 import Image from 'next/image';
@@ -25,10 +25,11 @@ export default function AboutPage() {
       />
       <main className={styles.main}>
         <div className={styles.storyContainer}>
-          {/* CAMADA DE FUNDO */}
-          <AnimatedThread />
+          {/* --- MUDANÇA: Wrapper adicionado para controle via CSS --- */}
+          <div className={styles.animatedThreadContainer}>
+            <AnimatedThread />
+          </div>
 
-          {/* MUDANÇA: Novo container para todo o conteúdo de frente */}
           <div className={styles.contentWrapper}>
             {/* --- Seção 1: A Fundadora --- */}
             <motion.section 
@@ -39,7 +40,7 @@ export default function AboutPage() {
               variants={sectionVariants}
             >
               <div className={styles.imageWrapper}>
-                <Image src="/atelie-dona.jpeg" alt="Raisa, fundadora do ateliê" fill sizes="50vw" className={styles.image} />
+                <Image src="/atelie-dona.jpeg" alt="Raisa, fundadora do ateliê" fill sizes="(max-width: 900px) 80vw, 40vw" className={styles.image} />
               </div>
               <div className={styles.textWrapper}>
                 <h2 className={styles.sectionTitle}>Das Mãos de Raisa para o Mundo</h2>
@@ -65,13 +66,13 @@ export default function AboutPage() {
                 </ul>
               </div>
               <div className={styles.imageWrapper}>
-                <Image src="/bordado-atelie.jpeg" alt="Detalhe de um bordado delicado" fill sizes="50vw" className={styles.image} />
+                <Image src="/bordado-atelie.jpeg" alt="Detalhe de um bordado delicado" fill sizes="(max-width: 900px) 80vw, 40vw" className={styles.image} />
               </div>
             </motion.section>
-          </div> {/* Fim do contentWrapper */}
-        </div> {/* Fim do storyContainer */}
+          </div>
+        </div>
 
-        {/* --- Seção 3: O Ateliê (FORA do container do fio) --- */}
+        {/* --- Seção 3: O Ateliê --- */}
         <motion.section 
           className={styles.atelierSection}
           initial="hidden"
@@ -81,9 +82,9 @@ export default function AboutPage() {
         >
           <h2 className={styles.sectionTitle}>Um Vislumbre do Nosso Cantinho</h2>
           <div className={styles.gallery}>
-            <div className={styles.galleryImage}><Image src="/mesa.jpeg" alt="Mesa de trabalho" fill sizes="55vw" className={styles.image} /></div>
-            <div className={styles.galleryImage}><Image src="/tecidos.jpeg" alt="Tecidos e linhas" fill sizes="55vw" className={styles.image} /></div>
-            <div className={styles.galleryImage}><Image src="/linha.jpeg" alt="Peça sendo finalizada" fill sizes="55vw" className={styles.image} /></div>
+            <div className={styles.galleryImage}><Image src="/mesa.jpeg" alt="Mesa de trabalho" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.image} /></div>
+            <div className={styles.galleryImage}><Image src="/tecidos.jpeg" alt="Tecidos e linhas" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.image} /></div>
+            <div className={styles.galleryImage}><Image src="/linha.jpeg" alt="Peça sendo finalizada" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.image} /></div>
           </div>
         </motion.section>
       </main>

@@ -1,12 +1,14 @@
-// src/components/CartDrawer.js (COMPLETO E CORRIGIDO)
+// src/components/CartDrawer.js (CORRIGIDO PARA VARIAÇÕES)
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link'; // Importar Link
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/context/CartContext';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
 import styles from './CartDrawer.module.css';
+
+const PLACEHOLDER_IMAGE = '/images/placeholder.jpg'; // Imagem de fallback
 
 export default function CartDrawer() {
   const { isCartOpen, toggleCart, cartItems, removeFromCart, updateQuantity } = useCart();
@@ -45,20 +47,24 @@ export default function CartDrawer() {
               <>
                 <div className={styles.itemList}>
                   {cartItems.map(item => (
-                    <div key={item.id} className={styles.item}>
+                    // --- MUDANÇA 1: A chave do item agora deve ser única para cada variação ---
+                    <div key={`${item.id}-${item.variacaoId}`} className={styles.item}>
                       <div className={styles.itemImage}>
-                        <Image src={item.images[0]} alt={item.name} fill sizes="100px" style={{ objectFit: 'cover' }} />
+                        {/* Acesso seguro à imagem com fallback */}
+                        <Image src={item.images?.[0] || PLACEHOLDER_IMAGE} alt={item.name} fill sizes="100px" style={{ objectFit: 'cover' }} />
                       </div>
                       <div className={styles.itemDetails}>
                         <p className={styles.itemName}>{item.name}</p>
                         <p className={styles.itemPrice}>R$ {item.price.toFixed(2).replace('.', ',')}</p>
                         <div className={styles.quantityControls}>
-                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
+                          {/* --- MUDANÇA 2: Passar 'item.variacaoId' para a função updateQuantity --- */}
+                          <button onClick={() => updateQuantity(item.id, item.variacaoId, item.quantity - 1)}><Minus size={14} /></button>
                           <span>{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+                          <button onClick={() => updateQuantity(item.id, item.variacaoId, item.quantity + 1)}><Plus size={14} /></button>
                         </div>
                       </div>
-                      <button onClick={() => removeFromCart(item.id)} className={styles.removeItemButton}>
+                      {/* --- MUDANÇA 3: Passar 'item.variacaoId' para a função removeFromCart --- */}
+                      <button onClick={() => removeFromCart(item.id, item.variacaoId)} className={styles.removeItemButton}>
                         <Trash2 size={16} />
                       </button>
                     </div>
@@ -69,7 +75,6 @@ export default function CartDrawer() {
                     <span>Subtotal</span>
                     <span>R$ {subtotal.toFixed(2).replace('.', ',')}</span>
                   </div>
-                  {/* MUDANÇA: Transformar o botão em um Link */}
                   <Link href="/checkout" onClick={toggleCart} className={styles.checkoutButton}>
                     Finalizar Compra
                   </Link>
